@@ -30,6 +30,11 @@ class TestBooksCollector:
         collector.add_new_book(long_name)
         assert long_name not in collector.get_book_genre()
     #Проверить что книге можно задать жанр
+    def test_set_book_genre_valid_genre(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гарри Поттер')
+        collector.set_book_genre('Гарри Поттер', 'Фантастика')
+        assert collector.get_book_genre('Гарри Поттер') == 'Фантастика'
     #Проверить что некорректный жанр не задается
     #Проверить что возвращаем книги с конкретным жанром
     #Проверить что можно вернуть книги подходящие детям
