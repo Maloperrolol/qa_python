@@ -1,3 +1,4 @@
+import pytest
 from main import BooksCollector
 
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
@@ -28,7 +29,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         long_name = 'A' * 45
         collector.add_new_book(long_name)
-        assert long_name not in collector.get_book_genre()
+        assert long_name not in collector.get_books_genre()
     #Проверить что книге можно задать жанр
     def test_set_book_genre_valid_genre(self):
         collector = BooksCollector()
@@ -82,6 +83,7 @@ class TestBooksCollector:
         collector.delete_book_from_favorites('Гарри Поттер')
         assert 'Гарри Поттер' not in collector.get_list_of_favorites_books()
     #Тест для проверки установки жанров разным книгам
+    
     @pytest.mark.parametrize(
             "book_name, genre",
         [
