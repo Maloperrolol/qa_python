@@ -75,4 +75,10 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Гарри Поттер')
         assert collector.get_list_of_favorites_books().count('Гарри Поттер') == 1
     #проверить что книгу можно удалить из избранного
+    def test_delete_book_from_favorites_removes_book(self):
+        collector = BooksCollector() 
+        collector.add_new_book('Гарри Поттер')
+        collector.add_book_in_favorites('Гарри Поттер')
+        collector.delete_book_from_favorites('Гарри Поттер')
+        assert 'Гарри Поттер' not in collector.get_list_of_favorites_books()
     #
