@@ -35,7 +35,14 @@ class TestBooksCollector:
         collector.add_new_book('Гарри Поттер')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
         assert collector.get_book_genre('Гарри Поттер') == 'Фантастика'
-    #Проверить что некорректный жанр не задается
+    #Проверка  что метод возвращает словарь с книгами
+    def test_get_books_genre_returns_dict(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гарри Поттер')
+        collector.set_book_genre('Гарри Поттер', 'Фантастика')
+        books_genre = collector.get_books_genre()
+        assert type(books_genre) == dict
+        assert books_genre['Гарри Поттер'] == 'Фантастика'
     #Проверить что возвращаем книги с конкретным жанром
     #Проверить что можно вернуть книги подходящие детям
     #
