@@ -66,7 +66,7 @@ class TestBooksCollector:
         collector = BooksCollector() 
         collector.add_new_book('Гарри Поттер')
         collector.add_book_in_favorites('Гарри Поттер')
-        assert collector.
+        assert collector.get_list_of_favorites_books() == ['Гарри Поттер']
     #Проверить что книгу нельзя добавить в избраанное дважды
     #проверить что книгу можно удалить из избранного
     #
