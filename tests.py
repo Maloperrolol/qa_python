@@ -43,9 +43,17 @@ class TestBooksCollector:
         books_genre = collector.get_books_genre()
         assert type(books_genre) == dict
         assert books_genre['Гарри Поттер'] == 'Фантастика'
-    #Проверить что возвращаем книги с конкретным жанром
+    #Проверить что возвращается книга определенного жанра
+    def test_get_books_with_specific_genre_returrns_correct_books(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гарри Поттер')
+        collector.add_new_book('Оно')
+        collector.set_book_genre('Гарри Поттер', 'Фантастика')
+        collector.set_book_genre('Оно', 'Ужасы')
+        result = collector.get_books_with_specific_genre('Фантастика')
+        assert result == ['Гарри Поттер']
     #Проверить что можно вернуть книги подходящие детям
-    #
+    def test_get_
     #Проверить что книга добавляется в избранное
     #Проверить что книгу нельзя добавить в избраанное дважды
     #проверить что книгу можно удалить из избранного
