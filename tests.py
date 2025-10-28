@@ -53,8 +53,20 @@ class TestBooksCollector:
         result = collector.get_books_with_specific_genre('Фантастика')
         assert result == ['Гарри Поттер']
     #Проверить что можно вернуть книги подходящие детям
-    def test_get_
+    def test_get_books_for_children_returns_only_child_friendly_books(self):
+       collector = BooksCollector() 
+       collector.add_new_book('Алиса в стране чудес')
+       collector.add_new_book('Сияние')
+       collector.set_book_genre('Алиса в стране чудес', 'Мультфильмы')
+       collector.set_book_genre('Сияние', 'Ужасы')
+       result = collector.get_books_for_children()
+       assert result == ['Алиса в стране чудес']
     #Проверить что книга добавляется в избранное
+    def test_add_books_in_favorites_adds_book(self):
+        collector = BooksCollector() 
+        collector.add_new_book('Гарри Поттер')
+        collector.add_book_in_favorites('Гарри Поттер')
+        assert collector.
     #Проверить что книгу нельзя добавить в избраанное дважды
     #проверить что книгу можно удалить из избранного
     #
