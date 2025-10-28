@@ -81,4 +81,18 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Гарри Поттер')
         collector.delete_book_from_favorites('Гарри Поттер')
         assert 'Гарри Поттер' not in collector.get_list_of_favorites_books()
-    #
+    #Тест для проверки установки жанров разным книгам
+    @pytest.mark.parametrize(
+            "book_name, genre",
+        [
+            ('Гарри Поттер','Фантастика'),
+            ('Шерлок Холмс', 'Детективы'),
+            ('Сияние', 'Ужасы'),
+            ('Алиса в стране чудес', 'Мультфильмы'),
+        ]
+    )
+    def test_set_book_genre_with_parametrize(self, book_name, genre):
+        collector = BooksCollector() 
+        collector.add_new_book(book_name)
+        collector.set_book_genre(book_name, genre)
+        assert collector.get_book_genre(book_name) == genre
