@@ -61,8 +61,7 @@ class TestBooksCollector:
        collector.add_new_book('Сияние')
        collector.set_book_genre('Алиса в стране чудес', 'Мультфильмы')
        collector.set_book_genre('Сияние', 'Ужасы')
-       result = collector.get_books_for_children()
-       assert result == ['Алиса в стране чудес']
+       assert collector.get_books_for_children() == ['Алиса в стране чудес']
     #Проверить что книга добавляется в избранное
     def test_add_books_in_favorites_adds_book(self, collector):
         collector.add_new_book('Гарри Поттер')
@@ -83,15 +82,18 @@ class TestBooksCollector:
     #Тест для проверки установки жанров разным книгам
     
     @pytest.mark.parametrize(
-            "book_name, genre",
+            "book_name, genre, expected_genre",
         [
-            ('Гарри Поттер','Фантастика'),
-            ('Шерлок Холмс', 'Детективы'),
-            ('Сияние', 'Ужасы'),
-            ('Алиса в стране чудес', 'Мультфильмы'),
+            ('Гарри Поттер','Фантастика','Фантастика'),
+            ('Шерлок Холмс', 'Детективы', 'Детективы'),
+            ('Сияние', 'Ужасы', 'Ужасы'),
+            ('Алиса в стране чудес', 'Мультфильмы', 'Мультфильмы'),
+            ('Не существующая книга', 'Придуманный жанр', '')
         ]
     )
-    def test_set_book_genre_with_parametrize(self, collector, book_name, genre):
+    def test_set_book_genre_with_parametrize(self, collector, book_name, genre, expected_genre):
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, genre)
-        assert collector.get_book_genre(book_name) == genre
+        assert collector.get_book_genre(book_name) == expected_genre
+
+    def 
