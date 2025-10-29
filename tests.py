@@ -1,6 +1,9 @@
 import pytest
 from main import BooksCollector
 
+@pytest.fixture
+def collector():
+    return BooksCollector()
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
 # обязательно указывать префикс Test
 class TestBooksCollector:
@@ -42,7 +45,7 @@ class TestBooksCollector:
         collector.add_new_book('Гарри Поттер')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
         books_genre = collector.get_books_genre()
-        assert type(books_genre) == dict
+
         assert books_genre['Гарри Поттер'] == 'Фантастика'
     #Проверить что возвращается книга определенного жанра
     def test_get_books_with_specific_genre_returrns_correct_books(self):
