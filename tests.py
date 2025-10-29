@@ -43,15 +43,14 @@ class TestBooksCollector:
     def test_get_books_genre_returns_dict(self, collector):
         collector.add_new_book('Гарри Поттер')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
-        assert collector.get_books_genre() == {'Гарри Поттер', 'Фантастика'}
+        assert collector.get_books_genre() == {'Гарри Поттер': 'Фантастика'}
     #Проверить что возвращается книга определенного жанра
-    def test_get_books_with_specific_genre_returrns_correct_books(self, collector):
+    def test_get_books_with_specific_genre_returns_correct_books(self, collector):
         collector.add_new_book('Гарри Поттер')
         collector.add_new_book('Оно')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
         collector.set_book_genre('Оно', 'Ужасы')
-        result = collector.get_books_with_specific_genre('Фантастика')
-        assert result == ['Гарри Поттер']
+        assert collector.get_books_with_specific_genre('Фантастика') == ['Гарри Поттер']
     #Проверить что можно вернуть книги подходящие детям
     def test_get_books_for_children_returns_only_child_friendly_books(self, collector):
        collector.add_new_book('Алиса в стране чудес')
@@ -93,10 +92,10 @@ class TestBooksCollector:
         collector.set_book_genre(book_name, genre)
         assert collector.get_book_genre(book_name) == expected_genre
 
-    def test_get_list_of_favorites_books_returns_correct_listt(self, collector):
+    def test_get_list_of_favorites_books_returns_correct_list(self, collector):
         collector.add_new_book('Гарри Поттер')
         collector.add_new_book('Алиса в стране чудес')
         collector.add_book_in_favorites('Гарри Поттер')
         collector.add_book_in_favorites('Алиса в стране чудес')
-        favorites = collector.get_list_of__favorites_books()
+        favorites = collector.get_list_of_favorites_books()
         assert favorites == ['Гарри Поттер', 'Алиса в стране чудес']
